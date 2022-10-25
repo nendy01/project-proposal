@@ -6,7 +6,7 @@ const mealReducer = (state ={},action) => {
  
   switch (action.type) {
     case START_DATA:
-      return {meals:action.payload}
+      return {...action.payload}
     default:
       return state
   }
