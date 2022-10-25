@@ -1,28 +1,43 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { traerDatos } from '../redux/actions'
 
 
 const Home = () => {
   const dispatch = useDispatch()
+  const [name, setName] = useState(null)
   const { meal: { meals, categories } } = useSelector(state => state);
-  console.log(meals, categories);
+
   useEffect(() => {
     dispatch(traerDatos("/filter.php?c=Seafood", "/categories.php", true))
   }, [])
 
   return (
     <div>
+      <form className='focus:outline-none focus:border-none'
+        onSubmit={e => {
+          e.preventDefault()
+          dispatch(traerDatos(`/search.php?s=${traerDatos}`))
+        }
+        }>
+        <select onChange={e => dispatch(traerDatos(`/filter.php?c=${e.target.value}`))}>
+          {categories?.map(C => <option value={C.strCategory}        >{C.strCategory}</option>)}
+        </select>
+        <div>
+          <input type="text" name="name" placeholder='search by name' />
+          <input type="submit" value="search" />
+        </div>
+      </form>
 
-      <select >
-        {categories?.map(C => <option value={C.strCategory}>{C.strCategory}</option>)}
-      </select>
-
-      <section className='grid gap-4 px-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-        {meals?.map(M => <section>
+      <section className='grid gap-4 px-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>{meals?.map(M => <section>
+        <figure>
           <img src={M.strMealThumb} alt="" />
-          <h2>{M.strMeal}</h2>
-        </section>)}
+        </figure>
+        <div>
+          <Link to={`/${M.strMeal}`}>{M.strMeal}</Link>
+        </div>
+      </section>)}
       </section>
     </div>
   )
