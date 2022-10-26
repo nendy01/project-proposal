@@ -1,6 +1,6 @@
 import { mealTypes } from "../TYPES";
 
-const {DATA_MEAL,START_DATA} = mealTypes
+const {START_DATA} = mealTypes
 
 const mealReducer = (state ={},action) => {
  

@@ -13,10 +13,10 @@ const traerDatos = (url1, url2, isTrue) => {
     return (dispatch) => {
       Promise.all([API.get(url1), API.get(url2)])
         .then(([data1, data2]) => {
-          //
+          //data1
           const {data:dataOne} = data1
           const { data: dataTwo } = data2
-          //
+          //data2
           const { meals } = dataOne
           const { categories } = dataTwo
           

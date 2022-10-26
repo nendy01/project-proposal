@@ -1,41 +1,46 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { traerDatos } from '../redux/actions'
+
+import { MdOutlineKeyboardBackspace } from 'react-icons/md';
 
 const OneMeal = () => {
 
   const { mealID } = useParams()
+  const dispatch = useDispatch()
 
   const { meal: { meals } } = useSelector(state => state);
-  const [result] = meals;
+  const result = meals && meals[0];
+  console.log(result);
 
-  const { strArea, strMealThumb, strCategory, strYoutube, strTags, strSource
-    , strMeal, strInstructions } = result
+  /* const { strArea, strMealThumb, strCategory, strYoutube, strTags, strSource
+    , strMeal, strInstructions } = result */
 
-  const tags = strTags && strTags.split(',')
-  console.log(tags);
+  const tags = strTags && result.strTags.split(',')
 
   const ingredients = []
   for (let [ingredient, value] of Object.entries(result)) {
     if (ingredient.startsWith("strIngredient")) ingredients.push(value)
   }
 
-  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(traerDatos(`/search.php?s=${mealID}`))
+
+    dispatch(traerDatos(`/search.php?s=${mealID || "Sushi"}`))
+
   }, [mealID])
 
 
   return (
-    <div className='grow md:grid md:grid-cols-2 md:gap-4 mt-4'>
 
-
+    <div className='grow lg:grid lg:grid-cols-2 lg:gap-4 mt-4'>
       <div className="main-meal h-auto flex flex-col items-center mb-4">
-        <Link to="/" className='bg-slate-800 text-white py-2 px-4 mb-4'>volver</Link>
+        <Link to="/" className='flex items-center bg-slate-800 text-white py-2 px-4 mb-4'>
+          <MdOutlineKeyboardBackspace size="1rem" />
+          volver</Link>
         <img src={strMealThumb} alt="" className='w-72' />
-        <h2 className='my-4 font-semibold font-serif text-2xl text-center'>{strMeal}</h2>
+        <h2 className='my-4 font-semibold font-serif text-2xl text-center'>{resultstrMeal}</h2>
         <div className=''>
           <a href={strYoutube} target="_blank" className='mr-2 py-2 px-4 bg-red-600 text-white'>ver video</a>
           <a href={strSource} target="_blank" className='ml-2 py-2 px-4 bg-slate-800 text-white'>ver blog</a>
@@ -66,6 +71,7 @@ const OneMeal = () => {
         <p className='mt-2 mr-24'>{strInstructions}</p>
       </div>
     </div>
+
   )
 }
 

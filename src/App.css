@@ -4,3 +4,9 @@
   background-position: center;
   background-attachment: fixed;
 }
+header{
+  background-color: rgba(0, 0, 0, 0.616);
+}
+footer{
+  background-color: rgba(0, 0, 0, 0.616);
+}
