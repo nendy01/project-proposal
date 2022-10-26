@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom'
 import Meal from '../components/Meal'
 import { traerDatos } from '../redux/actions'
 
+import { BiSearchAlt } from "react-icons/bi";
+
+
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -15,24 +18,32 @@ const Home = () => {
 
   return (
     <div className='grow my-4'>
-      <form className='flex px-12 py-4  justify-between'
+      <form className='flex items-center justify-center flex-col lg px-12 py-4 md:flex-row  md:justify-between'
         onSubmit={e => {
           e.preventDefault()
           dispatch(traerDatos(`/search.php?s=${name}`))
-        }
-        }>
-        <select onChange={e => dispatch(traerDatos(`/filter.php?c=${e.target.value}`))} className="text-white bg-slate-800">
-          {categories?.map(C => <option value={C.strCategory}        >{C.strCategory}</option>)}
+        }} autoComplete="off">
+        <select onChange={e => dispatch(traerDatos(`/filter.php?c=${e.target.value}`))} className="text-white bg-slate-800 mr-2 rounded-xl">
+          {categories?.map((C, i) => <option value={C.strCategory} key={i}>{C.strCategory}</option>)}
         </select>
-        <div>
-          <input className='focus:outline-none border-b-2 border-indigo-500 text-white bg-slate-800'
+
+
+        <div className='flex items-center	text-white ml-2'>
+          <input className='focus:outline-none border-b-2 border-indigo-500 text-white 
+          bg-transparent'
             type="text" name="name" placeholder='search by name' onChange={e => setName(e.target.value)} />
-          <input type="submit" value="search" className='ml-2 p-0.5 bg-indigo-500' />
+          <label htmlFor="search">
+            <BiSearchAlt size="1.5rem" />
+          </label>
+
+          <input type="submit" value="" name='search' id='search' />
         </div>
+
+
       </form>
 
       <section
-        className='grid gap-4 px-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center '>{meals?.map(M => <Meal meal={M} />)}
+        className='grid gap-4 px-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center '>{meals?.map((M, i) => <Meal meal={M} key={i} />)}
       </section>
     </div>
   )
