@@ -5,7 +5,7 @@ import Layout from './components/Layout'
 
 function App() {
   return (
-    <div className="App">
+    <div className="flex App text-white min-h-screen flex-col">
       <Provider store={store}>
         <Layout />
       </Provider>

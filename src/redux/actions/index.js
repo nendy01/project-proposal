@@ -26,10 +26,8 @@ const traerDatos = (url1, url2, isTrue) => {
   }
   return (dispatch) => {
     API.get(url1)
-      .then(({ data: { meals }, data }) => {
-        console.log(data);
-        dispatch(agregarAlStore({ meals }))
-        
+      .then(({ data }) => {
+        dispatch(agregarAlStore({ meals:data.meals }))
       })
   }
 }
