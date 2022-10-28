@@ -39,35 +39,35 @@ const OneMeal = () => {
             <MdOutlineKeyboardBackspace size="1rem" />
             volver</Link>
           <img src={strMealThumb} alt="" className='w-72' />
-          <h2 className='my-4 font-semibold font-serif text-2xl text-center'>{strMeal}</h2>
+          <h2 className='my-4 font-semibold font-serif text-2xl text-center font-bold tracking-tight'>{strMeal}</h2>
           <div className=''>
-            <a href={strYoutube} target="_blank" className='mr-2 py-2 px-4 bg-red-600 text-white'>ver video</a>
-            <a href={strSource} target="_blank" className='ml-2 py-2 px-4 bg-slate-800 text-white'>ver blog</a>
+            <a href={strYoutube} target="_blank" className='mr-2 py-2 px-4 bg-red-600 text-white'>Ver video</a>
+            <a href={strSource} target="_blank" className='ml-2 py-2 px-4 bg-slate-800 text-white'>Ver blog</a>
           </div>
         </div>
 
         <div className="info-meal pl-4">
-          <h3 className='text-xl mt-2'>categoria:</h3>
+          <h3 className='text-xl my-2 font-semibold'>Categoria:</h3>
           <p>{strCategory}</p>
-          <h3 className='text-xl mt-2'>Area:</h3>
+          <h3 className='text-xl my-2 font-semibold'>Area:</h3>
           <p>{strArea}</p>
 
           <div>
-            <h3 className='text-xl mt-2'>etiquetas:</h3>
+            <h3 className='text-xl my-4 font-semibold'>Etiquetas:</h3>
             <ul className='flex flex-wrap mt-2'>
               {strTags?.split(",").map((T, i) => <li key={i} className='ml-1 mt-1 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1  bg-slate-800 text-white rounded-full'>{T}</li>)}
             </ul>
           </div>
 
           <div>
-            <h3 className='text-xl mt-2'>ingredients:</h3>
+            <h3 className='text-xl my-4 font-semibold'>Ingredients:</h3>
             <ul className='flex flex-wrap mt-2'>
               {ingredients && ingredients?.map((T, i) => T && <li key={i} className='ml-1 mt-1 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-slate-800 text-white rounded-full'>{T}</li>)}
             </ul>
           </div>
 
           <div>
-            <h3 className='text-xl  mt-6'>instructions:</h3>
+            <h3 className='text-xl  my-4 font-semibold'>Instructions:</h3>
             {strInstructions?.split(".").map((I, i) => <p key={i}>{I}</p>)}
           </div>
 

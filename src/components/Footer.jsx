@@ -2,10 +2,10 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className='h-6'>
+    <footer className=' mt-2 p-4'>
       <p className='text-center'>
-        website create by
-        <a href="https://julio-portfolio.netlify.app/" target="_blank" className='ml-2 text-indigo-500'>@Julio torres</a>
+        Website create by
+        <a href="https://julio-portfolio.netlify.app/" target="_blank" className=' text-indigo-500 bg-black'> @Julio Torres</a>
       </p>
     </footer>
   )

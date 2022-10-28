@@ -5,6 +5,8 @@ import Meal from '../components/Meal'
 import { traerDatos } from '../redux/actions'
 
 import { BiSearchAlt } from "react-icons/bi";
+import Select from '../components/Select'
+import Cs from '../components/Cs'
 
 
 
@@ -23,16 +25,16 @@ const Home = () => {
           e.preventDefault()
           dispatch(traerDatos(`/search.php?s=${name}`))
         }} autoComplete="off">
-        <select onChange={e => dispatch(traerDatos(`/filter.php?c=${e.target.value}`))} className="text-white bg-slate-800 mr-2 rounded-xl">
-          {categories?.map((C, i) => <option value={C.strCategory} key={i}>{C.strCategory}</option>)}
-        </select>
+
+        <Select categories={categories} dispatch={dispatch} traerDatos={traerDatos} />
 
 
-        <div className='flex items-center	text-white ml-2'>
+        <div className='flex items-center	text-white ml-2 mt-2 lg:mt-0'>
+
           <input className='focus:outline-none border-b-2 border-indigo-500 text-white 
-          bg-transparent'
-            type="text" name="name" placeholder='search by name' onChange={e => setName(e.target.value)} />
-          <label htmlFor="search">
+          bg-transparent p-1'
+            type="text" name="name" placeholder='Search by name' onChange={e => setName(e.target.value)} />
+          <label htmlFor="search" className=' cursor-pointer p-2'>
             <BiSearchAlt size="1.5rem" />
           </label>
 
@@ -41,10 +43,11 @@ const Home = () => {
 
 
       </form>
-
       <section
         className='grid gap-4 px-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center '>{meals?.map((M, i) => <Meal meal={M} key={i} />)}
       </section>
+
+
     </div>
   )
 }

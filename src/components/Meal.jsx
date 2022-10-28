@@ -13,7 +13,7 @@ const Meal = ({ meal: { strMealThumb, strMeal } }) => {
       </figure>
       <div className='py-2 h-full grow flex justify-between items-center flex-col py-2'>
         <h2 className='text-center mb-1'>{strMeal}</h2>
-        <Link to={`/${strMeal}`} className="px-4 py-1 bg-slate-800 mt-1">ver</Link>
+        <Link to={`/${strMeal}`} className="px-4 py-1 bg-slate-800 mt-1 rounded">Ver</Link>
       </div>
     </section>
   )
